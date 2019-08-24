@@ -1,0 +1,20 @@
+{% extends 'user/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    {% if request.session.is_login %}
+        <h1>欢迎回来！</h1>
+        <a href="/edit_user/">修改用户资料</a>
+        <p>头像：<img src="/media/{{ user.avatar|safe }}" width="100px" height="100px">修改头像<input type="file" value="修改头像" /></p>
+        <p>昵称：{{ user.nickname|default_if_none:'' }}</p>
+        <p>用户名：{{ user.name }}</p>
+        <p>邮箱：{{ user.email }}-<span style="color: #2e6da4">是否验证:{% if user.has_confirmed %} 已验证{% else %}未验证{% endif %}</span></p>
+        <p>性别：{% ifequal user.sex 'male' %}男{% endifequal %}{% ifequal user.sex 'female' %}女{% endifequal %}</p>
+        <p>注册时间：{{ user.atime }}-最后登录时间：{{ user.ctime }}</p>
+    {% else %}
+        <h1>尚未登录，请先 <a href="/login/" >登录</a>或<a href="/register/" >注册</a></h1>
+        <script>
+            window.setTimeout("window.location='/login/'",5000);
+        </script>
+    {% endif %}
+{% endblock %}

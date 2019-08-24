@@ -1,0 +1,18 @@
+{% extends 'user/base.html' %}
+
+{% block title %}修改用户资料{% endblock %}
+{% block css %} <link href="/static/bootstrap-3.3.7/css/login.css" rel="stylesheet">{% endblock %}
+{% block content %}
+
+<form class="form-signin" method="post">
+{% csrf_token %}
+        <h2 class="form-signin-heading">修改用户资料</h2>
+    <p style="color: red">{{ msg }}</p>
+
+     <div class="form-group">
+                  {{ edituserfrom.as_p }}
+              </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">确认修改</button>
+      </form>
+
+{% endblock %}

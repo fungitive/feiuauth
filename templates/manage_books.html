@@ -1,0 +1,9 @@
+<form method="post">
+    {{ formset.management_form }}
+{#    #一定要加这行代码#}
+    <table>
+        {% for form in formset %}
+        {{ form }}
+        {% endfor %}
+    </table>
+</form>

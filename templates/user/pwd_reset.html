@@ -1,0 +1,23 @@
+{% extends 'user/base.html' %}
+ {% load crispy_forms_tags %}
+{% block title %}重置密码{% endblock %}
+{% block css %} <link href="/static/bootstrap-3.3.7/css/login.css" rel="stylesheet">{% endblock %}
+{% block content %}
+    <form class="form-signin" method="post">
+{% csrf_token %}
+        <h2 class="form-signin-heading">重新设置密码</h2>
+    <p style="color: red">{{ msg }}{{ reset_form.captcha.errors }}</p>
+{{ reset_form  | crispy }}
+{#     <div class="form-group">#}
+{#                  {{ reset_form.newpwd1.label_tag }}#}
+{#                  {{ reset_form.newpwd1  }}#}
+{#              </div>#}
+{#              <div class="form-group">#}
+{#                  {{ reset_form.newpwd2.label_tag }}#}
+{#                  {{ reset_form.newpwd2 }}#}
+{#              </div>#}
+        <input type="hidden" name="email" value="{{ email }}">
+        <input type="hidden" name="username" value="{{ username }}">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">确认</button>
+      </form>
+{% endblock %}
